@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import './gifs.css';
 
 class Gifs extends Component {
-    state = { 
-        gifs:[1,2,3,4,5,5,6,7,7,4,5,6,7,5,4,4,4,6,4,4]
-     }
     render() { 
+        console.log(this.props.gifs)
         return ( 
-            <div class="container">
-            <div class="row">
-
-            {this.state.gifs.map((gif, i)=>
-                    <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                        <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2017/inslovakiath.jpg" alt={i}/>
-                        <span class="card-title">Card Title</span>
+            <div className="container">
+            <div className="row">
+            {this.props.gifs.map((gif, i)=>
+                    <div className="col s12 m4" key={i}>
+                    <div className="card">
+                        <div className="card-image">
+                            <img src={gif.images.fixed_height_still.url} alt={i}/>
                         </div>
-                        <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                        <div className="card-content">
+                            <p className="teal-text">{gif.title}</p>
                         </div>
-                        <div class="card-action">
-                        <a href="/">This is a link {gif}</a>
+                        <div className="card-action">
+                            <button className="btn waves-effect waves-light">Play
+                                <i className="material-icons right">play_arrow</i>
+                            </button><button className="btn waves-effect waves-light">Pause/Stop
+                                <i className="material-icons right">stop</i>
+                            </button>
                         </div>
                     </div>
                     </div>
@@ -35,4 +37,13 @@ class Gifs extends Component {
     }
 }
  
-export default Gifs;
+Gifs.propTypes = {
+    // playGif:PropTypes.func.isRequired,
+    // stopGif:PropTypes.func.isRequired,
+    gifs:PropTypes.array.isRequired,
+}
+
+const mapStateToProps = state => ({
+    gifs: state.gifs.gifs
+})
+export default connect(mapStateToProps, null)(Gifs);

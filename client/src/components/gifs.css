@@ -1,0 +1,12 @@
+.card .card-content{
+    height:6rem;
+    font-size: 1.3rem;
+}
+
+.card .card-image img{
+    height: 15rem;
+}
+
+.btn{
+    margin-left:0.1rem;
+}
