@@ -34,21 +34,24 @@ class Header extends Component {
         return (
                 <div className="container">
                     <div className="row">
-                        <form className="col s12 m6" onSubmit={this.onSubmit}>
+                        <form className="col s12" onSubmit={this.onSubmit}>
                             <div className="row">
-                            <div className="input-field col s12">
+                            <div className="input-field col s12 m4 inline">
                                 <p className="range-field">
-                                    <input type="range" name="numberOfResults" onChange={this.onChange} id="test5" min="0" max="100" />
-                                    <label htmlFor="test5">Set Results number.</label>
+                                    <input type="range" name="numberOfResults" 
+                                           onChange={this.onChange} id="test5" min="0" max="100" />
+                                    <label  className="white-text" htmlFor="test5">Set Results number.</label>
                                 </p>
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6 white-text inline">
                                     <input id="gif-input" name="searchTerm" type="text" onChange={this.onChange} value={this.state.input}  className="validate"/>
-                                    <label htmlFor="gif-input">Search gifs here.</label>
+                                    <label className="white-text"  htmlFor="gif-input">Search gifs here.</label>
                                 </div>
-                                <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-                                <i className="material-icons right">send</i>
-                              </button>
+                                <div className="input-field col s12 m2 inline">
+                                    <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                                        <i className="material-icons right">send</i>
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
