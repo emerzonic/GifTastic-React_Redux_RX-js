@@ -19,3 +19,8 @@
     border-radius: 1rem;
     transition: all 3s;
 }
+
+.input-field>label{
+    color:rgb(32, 31, 31);
+    font-size: 1rem;
+}
