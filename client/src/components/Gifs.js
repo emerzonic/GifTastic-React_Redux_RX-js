@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {togglePlay} from '../actions/gifActions';
 import './gifs.css';
 
 class Gifs extends Component {
+    constructor(props) {
+        super(props)
+        this.state={
+            play:false,
+            gifId:'',
+        }
 
-    toggleState(e){
+      
+
+    this.toggleState=(e) => {
         e.preventDefault()
-        // let ele = e.target
-        // let img = ele.prev()
-        // console.log(img);
-        let stillUrl = e.target.getAttribute('data-still-url')
-        let activeUrl = e.target.getAttribute('data-active-url')
-        let state = e.target.getAttribute('data-state')
-        if(state === 'still'){
-            e.target.setAttribute('src',activeUrl)
-            e.target.setAttribute('data-state','active')
+        let action = e.target.getAttribute('action')
+        let gifId = e.target.getAttribute('data-id')
+
+        if(action === 'play'){
+            this.props.togglePlay(true, gifId)
+            e.target.setAttribute('action', 'stop')
         }else{
-            e.target.setAttribute('src',stillUrl)
-            e.target.setAttribute('data-state','still')
+            this.props.togglePlay(false, gifId)
+            e.target.setAttribute('action', 'play')
         }
     }
+    }
     render() { 
+        console.log(this.props.currentGif)
+        const {currentGif} = this.props;
         return ( 
             <div className="container">
             <div className="row">
@@ -29,23 +39,22 @@ class Gifs extends Component {
                     <div className="col s12 m4" key={gif.id}>
                     <div className="card">
                         <div className="card-image">
-                            <img className="gif-image" src={gif.images.fixed_height_still.url} 
-                                 data-state="still" 
-                                 data-still-url={gif.images.fixed_height_still.url} 
-                                 data-active-url={gif.images.fixed_height.url} 
-                                 onClick={this.toggleState} alt={i}/>
+                            <img ref={gif.id} data-id={gif.id}  
+                                 src={currentGif.isPlaying && currentGif.gifId === gif.id ? 
+                                        gif.images.fixed_height.url : 
+                                        gif.images.fixed_height_still.url} 
+                                  alt={gif.title}/>
                         </div>
                         <div className="card-content">
                             <p className="teal-text">{gif.title|| "No title"}</p>
                         </div>
                         <div className="card-action">
-                            <button className="btn waves-effect waves-light" 
-                                    onClick={this.toggleState}>Play
-                                <i className="material-icons right">play_arrow</i>
-                            </button>
-                            <button className="btn waves-effect waves-light" 
-                                    onClick={this.toggleState}>Pause/Stop
-                                <i className="material-icons right">stop</i>
+                            <button action="play" data-id={gif.id} className="btn waves-effect waves-light play-button" 
+                                    onClick={this.toggleState}>
+                                    {currentGif.isPlaying && currentGif.gifId === gif.id ?  'Stop': 'Play'} 
+                                <i className="material-icons right">
+                                    {currentGif.isPlaying && currentGif.gifId === gif.id ? 'stop': 'play_arrow'}
+                                </i>
                             </button>
                         </div>
                     </div>
@@ -58,12 +67,13 @@ class Gifs extends Component {
 }
  
 Gifs.propTypes = {
-    // playGif:PropTypes.func.isRequired,
-    // stopGif:PropTypes.func.isRequired,
+    togglePlay:PropTypes.func.isRequired,
     gifs:PropTypes.array.isRequired,
+    currentGif:PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-    gifs: state.gifs.gifs
+    gifs: state.gifs.gifs,
+    currentGif: state.gifs.currentGif
 })
-export default connect(mapStateToProps, null)(Gifs);
+export default connect(mapStateToProps, {togglePlay})(Gifs);

@@ -1,8 +1,7 @@
 import axios from "axios";
 import {
     GET_GIFS,
-    PLAY_GIF,
-    STOP_GIF
+    TOGGLE_PLAY,
 } from "./types";
 import {
     getErrors
@@ -14,7 +13,9 @@ export const getGifs = (search, number) => async dispatch => {
     console.log(number)
 
     try {
-        const res = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${search}&api_key=WwClsP3WP2aPg9o5S7LndRo1YTZCrP5f&limit=${Number(number)}`)
+        const res = await axios.get(
+            `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=WwClsP3WP2aPg9o5S7LndRo1YTZCrP5f&limit=${Number(number)}`
+            )
         dispatch({
             type: GET_GIFS,
             payload: res.data.data || []
@@ -24,16 +25,10 @@ export const getGifs = (search, number) => async dispatch => {
     }
 }
 
-export const playGif = (boolean) => async dispatch => {
+export const togglePlay = (bool, gifId) => async dispatch => {
     dispatch({
-        type: PLAY_GIF,
-        payload: boolean
+        type: TOGGLE_PLAY,
+        payload: {isPlaying:bool, gifId:gifId}
     })
 }
 
-export const stopGif = (boolean) => async dispatch => {
-    dispatch({
-        type: STOP_GIF,
-        payload: boolean
-    })
-}

@@ -9,4 +9,13 @@
 
 .btn{
     margin-left:0.1rem;
+    font-weight:600;    
+}
+
+.form-content{
+    background-color: #ecedf1;
+    padding-top: 4rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    transition: all 3s;
 }

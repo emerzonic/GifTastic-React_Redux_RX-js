@@ -6,5 +6,4 @@ import gifsReducer from "./gifsReducer";
 export default combineReducers({
     errors:errorReducer,
     gifs:gifsReducer,
-   
 })

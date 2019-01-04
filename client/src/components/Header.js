@@ -23,37 +23,36 @@ class Header extends Component {
 
      this.onSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
         props.getGifs(this.state.searchTerm, this.state.numberOfResults)
      }
      }
 
 
     render() { 
-        // console.log(this.state)
         return (
-                <div className="container">
+                <div className="container form-content">
                     <div className="row">
-                        <form className="col s12" onSubmit={this.onSubmit}>
-                            <div className="row">
-                            <div className="input-field col s12 m4 inline">
-                                <p className="range-field">
-                                    <input type="range" name="numberOfResults" 
-                                           onChange={this.onChange} id="test5" min="0" max="100" />
+                            <form className="col s12" onSubmit={this.onSubmit}>
+                                <div className="row">
+                                    <div className="input-field col s12 m4 inline">
                                     <label  className="white-text" htmlFor="test5">Set Results number.</label>
-                                </p>
+
+                                        <p className="range-field">
+                                            <input type="range" name="numberOfResults" 
+                                                onChange={this.onChange} id="test5" min="0" max="100" />
+                                        </p>
+                                    </div>
+                                    <div className="input-field col s12 m6 white-text inline">
+                                        <input id="gif-input" name="searchTerm" type="text" onChange={this.onChange} value={this.state.input}  className="validate"/>
+                                        <label className="white-text"  htmlFor="gif-input">Search gifs here.</label>
+                                    </div>
+                                    <div className="input-field col s12 m2 inline">
+                                        <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                                            <i className="material-icons right">send</i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="input-field col s12 m6 white-text inline">
-                                    <input id="gif-input" name="searchTerm" type="text" onChange={this.onChange} value={this.state.input}  className="validate"/>
-                                    <label className="white-text"  htmlFor="gif-input">Search gifs here.</label>
-                                </div>
-                                <div className="input-field col s12 m2 inline">
-                                    <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-                                        <i className="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
                     </div>
                 </div>
                 );

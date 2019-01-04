@@ -1,13 +1,15 @@
 import {
     GET_GIFS,
-    PLAY_GIF,
-    STOP_GIF,
+    TOGGLE_PLAY,
 } from "../actions/types";
 
 const initialState = {
     gifs: [],
-    playGif: false,
-    StopGif:true,
+    currentGif: {
+        isPlaying: false,
+        gifId: ''
+    }
+
 }
 
 export default function (state = initialState, action) {
@@ -16,13 +18,9 @@ export default function (state = initialState, action) {
             return { ...state,
                 gifs: action.payload
             }
-        case PLAY_GIF:
+        case TOGGLE_PLAY:
             return { ...state,
-                playGif: action.payload
-            }
-        case STOP_GIF:
-            return { ...state,
-                stopGif:action.payload
+                currentGif: action.payload
             }
         default:
             return state
