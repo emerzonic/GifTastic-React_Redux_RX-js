@@ -30,37 +30,36 @@ class Gifs extends Component {
     }
     }
     render() { 
-        console.log(this.props.gifs.length)
         const {currentGif} = this.props;
         return ( 
             <div className="container">
-            <div className="row">
-            {this.props.gifs.map((gif, i)=>
-                    <div className="col s12 m4" key={gif.id}>
-                    <div className="card">
-                        <div className="card-image">
-                            <img ref={gif.id} data-id={gif.id}  
-                                 src={currentGif.isPlaying && currentGif.gifId === gif.id ? 
-                                        gif.images.fixed_height.url : 
-                                        gif.images.fixed_height_still.url} 
-                                  alt={gif.title}/>
+                <div className="row">
+                    {this.props.gifs.map((gif, i)=>
+                        <div className="col s12 m4" key={gif.id}>
+                            <div className="card">
+                                <div className="card-image">
+                                    <img ref={gif.id} data-id={gif.id}  
+                                        src={currentGif.isPlaying && currentGif.gifId === gif.id ? 
+                                                gif.images.fixed_height.url : 
+                                                gif.images.fixed_height_still.url} 
+                                        alt={gif.title}/>
+                                </div>
+                                <div className="card-content">
+                                    <p className="teal-text">{gif.title|| "No title"}</p>
+                                </div>
+                                <div className="card-action">
+                                    <button action="play" data-id={gif.id} className="btn waves-effect waves-light play-button" 
+                                            onClick={this.toggleState}>
+                                            {currentGif.isPlaying && currentGif.gifId === gif.id ?  'Stop': 'Play'} 
+                                        <i className="material-icons right">
+                                            {currentGif.isPlaying && currentGif.gifId === gif.id ? 'stop': 'play_arrow'}
+                                        </i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div className="card-content">
-                            <p className="teal-text">{gif.title|| "No title"}</p>
-                        </div>
-                        <div className="card-action">
-                            <button action="play" data-id={gif.id} className="btn waves-effect waves-light play-button" 
-                                    onClick={this.toggleState}>
-                                    {currentGif.isPlaying && currentGif.gifId === gif.id ?  'Stop': 'Play'} 
-                                <i className="material-icons right">
-                                    {currentGif.isPlaying && currentGif.gifId === gif.id ? 'stop': 'play_arrow'}
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                </div>
             </div>
          );
     }

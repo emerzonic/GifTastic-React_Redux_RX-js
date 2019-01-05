@@ -38,18 +38,6 @@ export const getGifs = (search, number) => async dispatch => {
 }
 
 
-
-// range(1, 200).pipe(
-//   filter(x => x % 2 === 1),
-//   map(x => x + x)
-// ).subscribe(x => console.log(x));
-
-// Observable.fromPromise(getGifs("test", 4)).subscribe((data) => console.log(data))
-
-
-
-
-
 export const togglePlay = (bool, gifId) => async dispatch => {
     dispatch({
         type: TOGGLE_PLAY,
