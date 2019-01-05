@@ -19,16 +19,22 @@ class Header extends Component {
         this.setState({
             [name]:value
         })
+        props.getGifs(this.state.searchTerm, this.state.numberOfResults)
+
      }
 
-     this.onSubmit = (e) => {
+     this.resetField = (e) => {
         e.preventDefault()
-        props.getGifs(this.state.searchTerm, this.state.numberOfResults)
-     }
+        this.setState({
+            searchTerm:'',
+        })
+     
+    }
      }
 
 
     render() { 
+        console.log(this.state)
         return (
                 <div className="container form-content">
                     <div className="row">
@@ -43,12 +49,13 @@ class Header extends Component {
                                         </p>
                                     </div>
                                     <div className="input-field col s12 m6 white-text inline">
-                                        <input id="gif-input" name="searchTerm" type="text" onChange={this.onChange} value={this.state.input}  className="validate"/>
-                                        <label className="label-text"  htmlFor="gif-input">Search gifs here.</label>
+                                        <input id="gif-input" name="searchTerm" type="text" autocomplete="off" 
+                                               onChange={this.onChange} value={this.state.searchTerm}  className="validate"/>
+                                        <label className="label-text"  htmlFor="gif-input">Start typing here to show results...</label>
                                     </div>
                                     <div className="input-field col s12 m2 inline">
-                                        <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-                                            <i className="material-icons right">send</i>
+                                        <button className="btn-floating btn-large waves-effect waves-light red" name="action" onClick={this.resetField}>
+                                            <i className="material-icons right">clear</i>
                                         </button>
                                     </div>
                                 </div>

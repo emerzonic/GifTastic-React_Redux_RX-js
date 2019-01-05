@@ -30,6 +30,7 @@ class Gifs extends Component {
     }
     }
     render() { 
+        console.log(this.props.gifs.length)
         const {currentGif} = this.props;
         return ( 
             <div className="container">

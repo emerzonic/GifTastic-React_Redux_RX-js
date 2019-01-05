@@ -6,29 +6,56 @@ import {
 import {
     getErrors
 } from "./errorAction";
+// import {
+//     Observable
+// } from 'rxjs';
+// import Rx from 'rxjs/Rx';
+// import {
+//     range
+// } from 'rxjs';
+// import {
+//     map,
+//     filter
+// } from 'rxjs/operators';
 
 
 export const getGifs = (search, number) => async dispatch => {
-    console.log(search)
-    console.log(number)
-
     try {
         const res = await axios.get(
             `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=WwClsP3WP2aPg9o5S7LndRo1YTZCrP5f&limit=${Number(number)}`
-            )
-        dispatch({
-            type: GET_GIFS,
-            payload: res.data.data || []
-        })
+        )
+        // Observable.fromPromise(res.data.data).subscribe((data) => {
+            // gifs.push(data)
+            dispatch({
+                type: GET_GIFS,
+                payload: res.data.data || []
+            })
+        // })
     } catch (err) {
         getErrors(err, dispatch)
     }
+
 }
+
+
+
+// range(1, 200).pipe(
+//   filter(x => x % 2 === 1),
+//   map(x => x + x)
+// ).subscribe(x => console.log(x));
+
+// Observable.fromPromise(getGifs("test", 4)).subscribe((data) => console.log(data))
+
+
+
+
 
 export const togglePlay = (bool, gifId) => async dispatch => {
     dispatch({
         type: TOGGLE_PLAY,
-        payload: {isPlaying:bool, gifId:gifId}
+        payload: {
+            isPlaying: bool,
+            gifId: gifId
+        }
     })
 }
-
