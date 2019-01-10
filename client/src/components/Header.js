@@ -29,7 +29,7 @@ class Header extends Component {
 
         }
 
-        this.resetField = (e) => {
+        this.resetSearchField = (e) => {
             e.preventDefault()
             this.setState({
                 searchTerm: '',
@@ -45,6 +45,11 @@ class Header extends Component {
             <div className="row">
                     <form className="col s12" onSubmit={this.onSubmit}>
                         <div className="row">
+                            <div className="input-field col s12 m6 white-text inline">
+                                <input id="gif-input" name="searchTerm" type="text" autoComplete="off" 
+                                       onChange={this.onChange} value={this.state.searchTerm}  className="validate"/>
+                                <label className="label-text"  htmlFor="gif-input">Start typing here to show results...</label>
+                            </div>
                             <div className="input-field col s12 m4 inline">
                             <label  className="label-text" htmlFor="test5">Set Results number.</label>
 
@@ -53,14 +58,9 @@ class Header extends Component {
                                         onChange={this.onChange} id="test5" min="0" max="100" />
                                 </p>
                             </div>
-                            <div className="input-field col s12 m6 white-text inline">
-                                <input id="gif-input" name="searchTerm" type="text" autocomplete="off" 
-                                       onChange={this.onChange} value={this.state.searchTerm}  className="validate"/>
-                                <label className="label-text"  htmlFor="gif-input">Start typing here to show results...</label>
-                            </div>
                             <div className="input-field col s12 m2 inline">
-                                <button className="btn-floating btn-large waves-effect waves-light red" name="action" onClick={this.resetField}>
-                                    <i className="material-icons right">clear</i>
+                                <button className="btn-floating btn-large waves-effect waves-light red" name="action" onClick={this.resetSearchField}>
+                                    Clear<i className="material-icons right">clear</i>
                                 </button>
                             </div>
                         </div>
@@ -74,7 +74,6 @@ class Header extends Component {
 Header.propTypes = {
     getGifs: PropTypes.func.isRequired,
 }
-
 
 export default connect(null, {
     getGifs

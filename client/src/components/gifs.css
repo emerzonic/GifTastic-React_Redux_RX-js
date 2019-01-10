@@ -1,26 +1,30 @@
-.card .card-content{
-    height:6rem;
+.card .card-content {
+    height: 6rem;
     font-size: 1.3rem;
 }
 
-.card .card-image img{
+.card .card-image img {
     height: 15rem;
 }
 
-.btn{
-    margin-left:0.1rem;
-    font-weight:600;    
+.btn {
+    margin-left: 0.1rem;
+    font-weight: 600;
 }
 
-.form-content{
-    background-color: #ecedf1;
+.form-content {
+    background-color: #eaf0f1;
     padding-top: 4rem;
     margin: 1rem;
     border-radius: 1rem;
     transition: all 1s;
 }
 
-.input-field>label{
-    color:rgb(32, 31, 31);
+.input-field>label {
+    color: rgb(32, 31, 31);
     font-size: 1rem;
+}
+
+nav, .page-footer {
+    background: #28a599
 }
