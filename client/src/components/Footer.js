@@ -12,7 +12,7 @@ const Footer = () => (
   </div>
   <div className="footer-copyright">
     <div className="container">
-    © 2019 Emerson Doyah Projects
+    ©{new Date().getFullYear()} Emerson Doyah Projects
     </div>
   </div>
 </footer>
